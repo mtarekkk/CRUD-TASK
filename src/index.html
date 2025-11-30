@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+</head>
+<body class="m-0 p-0 bg-[#222] text-white">
+    <div class="w-[80%] h-screen m-auto"> <!--crud-->
+        <div class="text-center mt-[11px] mb-[15px]"> <!--head-->
+            <h1 class="text-[30px] font-bold">CRUDS</h1>
+            <p>PRODUCT MANAGEMENT SYSTEM</p>
+        </div> <!--head-->
+
+        <div> <!--input-->
+            <input type="text" placeholder="title" id="title" class="w-full bg-[#111] p-2 rounded-[10px] outline-0 mb-2">
+            <div id="money" class="flex gap-2 flex-wrap">
+                <input onkeyup="getTotal()" type="number" placeholder="price" id="price" class="bg-[#111] p-2 rounded-[10px] outline-0 grow">
+                <input onkeyup="getTotal()" type="number" placeholder="taxes" id="taxes" class="bg-[#111] p-2 rounded-[10px] outline-0 grow">
+                <input onkeyup="getTotal()" type="number" placeholder="ads" id="ads" class="bg-[#111] p-2 rounded-[10px] outline-0 grow">
+                <input onkeyup="getTotal()" type="number" placeholder="discounts" id="discounts" class="bg-[#111] p-2 rounded-[10px] outline-0 grow">
+                <small id="total" class="bg-[#a00d02] p-2 rounded-[10px] outline-0 grow"></small>
+            </div>
+            <input type="number" placeholder="count" id="count" class="block w-full bg-[#111] p-2 rounded-[10px] outline-0 mt-2">
+            <input type="text" placeholder="category" id="category" class="block w-full bg-[#111] p-2 rounded-[10px] outline-0 mt-2">
+            <button id="submit" class="block w-full mt-2 rounded-[15px] p-2 outline-0 border-0 cursor-pointer bg-[#470053] hover:bg-[#780f8b]">Create</button>
+        </div> <!--input-->
+
+        <div> <!--output-->
+            <div>
+                <input onkeyup="searchData(this.value)" type="text" placeholder="Search" id="search" class="bg-[#111] p-2 rounded-[10px] outline-0 w-full mt-2">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="getSearchMood(this.id)" id="searchTitle" class=" mt-2 rounded-[15px] p-2 outline-0 border-0 cursor-pointer bg-[#470053] hover:bg-[#780f8b] grow">Search By Title</button>
+                    <button onclick="getSearchMood(this.id)" id="searchCategory" class=" mt-2 rounded-[15px] p-2 outline-0 border-0 cursor-pointer bg-[#470053] hover:bg-[#780f8b] grow">Search By Category</button>
+                </div>
+            </div>
+        </div> <!--output-->
+        <div id="deleteAll">
+
+        </div>
+        <table class="w-full text-center overflow-scroll">
+            <tr class="uppercase p">
+                <th>id</th>
+                <th>title</th>
+                <th>price</th>
+                <th>taxes</th>
+                <th>ads</th>
+                <th>discount</th>
+                <th>category</th>
+                <th>update</th>
+                <th>delete</th>
+            </tr>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+
+    </div> <!--crud-->
+    <script src="main.js"></script>
+</body>
+</html>

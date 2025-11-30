@@ -1,0 +1,18 @@
+@import "tailwindcss";
+#total::before{
+    content: 'Total: ';
+}
+th{
+    padding: 5px;
+}
+td{
+    padding: 5px;
+}
+tr td button{
+    padding: 5px;
+    background-color: #470053;
+    border-radius: 10px;
+}
+tr td button:hover{
+    background-color: #780f8b;
+}
