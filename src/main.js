@@ -17,9 +17,16 @@ let temp;
 function getTotal(){
     if(price.value != 0){
         let result = (+price.value + +taxes.value + +ads.value) - +discounts.value;
-        total.innerHTML=result;
+        total.innerHTML = result;
+        total.style.background = "green";
+        total.style.color = "white";
+    } else {
+        total.innerHTML = '';
+        total.style.background = "red";
+        total.style.color = "white";
     }
 }
+
 
 //Create
 
@@ -76,6 +83,9 @@ function clearData(){
     total.value='';
     count.value='';
     category.value='';
+    total.style.background = "red";
+    total.style.color = "white";
+    total.innerHTML=``;
 }
 
 //Read
@@ -143,55 +153,44 @@ function updateData(i){
 //search
 
 let searchMood='title';
-function getSearchMood(){
-    if(id='searchTitle'){
-       searchMood='title';
-    }
-    else{
-        searchMood='category';
-    }
+function getSearchMood(moodType){
+    searchMood = moodType;
+    search.placeholder = "Search by " + moodType;
     search.focus();
 }
 function searchData(value){
     let table='';
-    if(searchMood=='title'){
-        for(let i=0;i<data.length;i++){
-            if(data[i].title.includes(value)){
-                table+=`
-        <tr>
-                    <td>${i}</td>
-                    <td>${data[i].title}</td>
-                    <td>${data[i].price}</td>
-                    <td>${data[i].taxes}</td>
-                    <td>${data[i].ads}</td>
-                    <td>${data[i].discounts}</td>
-                    <td>${data[i].category}</td>
-                    <td><button onclick="updateData(${i})" id="update">Update</button></td>
-                    <td><button onclick="deleteData(${i})" id="delete">Delete</button></td>
-                </tr>
-        `;
-            }
+
+    for(let i=0;i<data.length;i++){
+        if(searchMood == 'title' && data[i].title.includes(value)){
+            table+=`
+            <tr>
+                <td>${i}</td>
+                <td>${data[i].title}</td>
+                <td>${data[i].price}</td>
+                <td>${data[i].taxes}</td>
+                <td>${data[i].ads}</td>
+                <td>${data[i].discounts}</td>
+                <td>${data[i].category}</td>
+                <td><button onclick="updateData(${i})">Update</button></td>
+                <td><button onclick="deleteData(${i})">Delete</button></td>
+            </tr>`;
+        }
+        else if(searchMood == 'category' && data[i].category.includes(value)){
+            table+=`
+            <tr>
+                <td>${i}</td>
+                <td>${data[i].title}</td>
+                <td>${data[i].price}</td>
+                <td>${data[i].taxes}</td>
+                <td>${data[i].ads}</td>
+                <td>${data[i].discounts}</td>
+                <td>${data[i].category}</td>
+                <td><button onclick="updateData(${i})">Update</button></td>
+                <td><button onclick="deleteData(${i})">Delete</button></td>
+            </tr>`;
         }
     }
-    else{
-for(let i=0;i<data.length;i++){
-            let table='';
-            if(data[i].category.includes(value)){
-                table+=`
-        <tr>
-                    <td>${i}</td>
-                    <td>${data[i].title}</td>
-                    <td>${data[i].price}</td>
-                    <td>${data[i].taxes}</td>
-                    <td>${data[i].ads}</td>
-                    <td>${data[i].discounts}</td>
-                    <td>${data[i].category}</td>
-                    <td><button onclick="updateData(${i})" id="update">Update</button></td>
-                    <td><button onclick="deleteData(${i})" id="delete">Delete</button></td>
-                </tr>
-        `;
-            }
-        }
-    }
-    tbody.innerHTML=table;
-    }
+
+    tbody.innerHTML = table;
+}
